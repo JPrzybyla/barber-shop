@@ -9,6 +9,7 @@ import Nav from "./components/Nav";
 import LandingPage from "./components/LandingPage";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
+import Appointment from "./components/Appoinment";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
                 <Route path={'/'} exact component={LandingPage}/>
                 <Route path={'/about'} exact component={AboutUs}/>
                 <Route path={'/contact'} exact component={Contact}/>
+                <Route path={'/appointment'} exact component={Appointment}/>
             </Switch>
         </div>
 
