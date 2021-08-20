@@ -3,24 +3,21 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 //styles and svg
-import '../App.css';
-import pic2 from './images/undraw_barber_3uel.svg';
+import '../App.scss';
+import '../AppMobile.scss';
 
 const LandingPage = () => {
 
-
     return(
-        <div>
-            <div className={'container'}>
-                <img src={pic2} alt={'dupa'}/>
+
+        <div className={'container landing-page'}>
                 <div className={'content-box'}>
-                    <h1>Lucian's BarberShop</h1>
-                    <p>It's not just a haircut, It's an experience</p>
+                    <h1>Your hair deserves the best</h1>
+                    <p>Enjoy & relax in a luxury barber shop environment</p>
                     <Link to={'/appointment'}>
-                        <div className={'button'}>MAKE APPOINTMENT</div>
+                        <button>MAKE APPOINTMENT</button>
                     </Link>
                 </div>
-            </div>
         </div>
     )
 }

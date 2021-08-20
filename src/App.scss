@@ -1,0 +1,56 @@
+@media (min-width: 501px) {
+  @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Roboto&display=swap');
+
+  @mixin flex($align-items: center, $justify-content: center){
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+  }
+
+
+  body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #efefef;
+  }
+  .logo{
+    font-size: 2rem;
+    font-family: 'Cutive Mono', monospace;
+    padding: 40px;
+    @include flex();
+  }
+  .container{
+    position: relative;
+    top: 50vh;
+    transform: translateY(-100%);
+    padding: 50px;
+    text-align: center;
+
+  }
+  .landing-page{
+    h1{
+      font-family: 'Cutive Mono', monospace;
+      font-size: 3rem;
+      margin: 20px;
+    }
+    p{
+      font-family: 'Cutive Mono', monospace;
+      font-size: 1rem;
+      margin: 20px;
+    }
+    button{
+      background: none;
+      color: #000000;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      width: 200px;
+      margin: 10px;
+    }
+
+  }
+
+}

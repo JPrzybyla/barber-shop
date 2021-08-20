@@ -1,29 +1,56 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import './nav.css';
+import './nav.scss';
+
 
 const Nav = () =>{
 
+    let links = [];
+
+    const toggleOnMenu = () => {
+        links.forEach(link => {
+            link.style.visibility = 'visible';
+        })
+    }
+    const toggleOffMenu = () => {
+        links.forEach(link => {
+            link.style.visibility = 'hidden';
+        })
+    }
+
     return(
-        <nav className={'navRedirected'}>
-            <Link to={'/'}>
-            <div className="nav-logo">Lucian's BarberShop</div>
-            </Link>
+        <nav>
+            <div className={'mobile-logo'} onClick={toggleOnMenu}>
+                <div>Lucian's Barbershop</div>
+                <div><i className="fas fa-bars"></i></div>
+            </div>
 
             <Link to={'/'}>
-            <div className="nav-link">Home</div>
+            <div
+                ref={(link) => { links.push(link) }}
+                className={'link'}
+                onClick={toggleOffMenu}>Home</div>
             </Link>
 
             <Link to={'/about'}>
-            <div className="nav-link">About Us</div>
+            <div
+                ref={(link) => { links.push(link) }}
+                className={'link'}
+                onClick={toggleOffMenu}>About Us</div>
             </Link>
 
             <Link to={'/contact'}>
-            <div className="nav-link">Contact</div>
+            <div
+                ref={(link) => { links.push(link) }}
+                className={'link'}
+                onClick={toggleOffMenu}>Contact</div>
             </Link>
 
             <Link to={'/appointment'}>
-            <div className="nav-link">Make Appointment</div>
+            <div
+                ref={(link) => { links.push(link) }}
+                className={'link'}
+                onClick={toggleOffMenu}>Make Appointment</div>
             </Link>
         </nav>
     )

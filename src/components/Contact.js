@@ -3,8 +3,9 @@ import React from 'react';
 import axios from "axios";
 import qs from 'qs';
 
-//importing css and simple-grid library
-import '../App.css';
+//importing css
+import '../App.scss';
+import '../AppMobile.scss';
 
 //import form validation script
 import emailValidation from './form validation/formValidation';
@@ -27,8 +28,25 @@ const Contact = () => {
                 message: message.current.value
             }
 
-            await axios.post('http://localhost/barbershop/messages.php', qs.stringify(data));
+            const request = await axios.post('http://localhost/barbershop/messages.php', qs.stringify(data));
+            switch (request.status){
+                case 201:
+                    //TODO: do some nice stuff when req is made
+                    alert("everythign went well");
+                    break;
+                case 418:
+                    alert("don't mess with me you little weiner");
+                    break;
+                case 503:
+                    alert("Sorry we got problem with connection to our server, please try again later");
+                    break;
+                default:
+                    break;
+            }
         }
+        else
+            console.log('dupa');
+            //TODO: do something
     }
 
     return(

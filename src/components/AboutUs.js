@@ -2,7 +2,8 @@
 import React from 'react';
 
 //importing css
-import '../App.css';
+import '../App.scss';
+import '../AppMobile.scss';
 
 
 //TODO: add load animations
