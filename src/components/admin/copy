@@ -1,0 +1,16 @@
+<div className="form-floating">
+                    <input ref={username} className="form-control" type="text" placeholder="Login"/>
+                    <label htmlFor="name">Login</label>
+                </div>
+                <div className="form-floating">
+                    <input ref={passwd} className="form-control" type="password" placeholder="Password"/>
+                    <label htmlFor="email">Password</label>
+                </div>
+                <br />
+                <div style={{
+                    color: errorMessageColor,
+                    margin: '10px'
+                }}>
+                    {errorMessage}
+                </div>
+                <button className="btn btn-primary text-uppercase " type="submit" onClick={login}>Login</button>

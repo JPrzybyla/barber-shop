@@ -1,5 +1,4 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
 
 //import css
 import './admin.scss';
@@ -13,4 +12,4 @@ function Admin(){
     );
 }
 
-export default withRouter(Admin);
+export default Admin;

@@ -3,16 +3,37 @@ import React from 'react';
 
 //importing css
 import '../App.scss';
-import '../AppMobile.scss';
+import img from '../components/images/img2.jpg'
 
 
 //TODO: add load animations
 
 const AboutUs = () => {
     return(
-        <div className={'container'}>
-            <h1>Who are we?</h1>
-            <p className={'text-content'}>Welcome to Lucian’s Barbershop, a modern spin on the traditional Italian barbershop. We provide a special environment designed to embrace a man’s masculinity, minus all the macho. Simply put, we are the “Better Barbershop” that offers an inviting environment to guys who value quality, particularly with their grooming. Whether you’re looking for a Classic Cut or prefer to go the extra mile with a straight razor face shave or beard trim, we’ll make sure you look great and feel even better.</p>
+        <div>
+            <header class="masthead" style={{backgroundImage: `url(${img})`}}>
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="page-heading">
+                                <h1>About Us</h1>
+                                <span class="subheading">This is what we do.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="mb-4">
+                <div class="container px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     )
 }

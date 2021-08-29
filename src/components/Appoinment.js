@@ -5,7 +5,7 @@ import qs from 'qs';
 
 //importing css
 import '../App.scss';
-import '../AppMobile.scss';
+import img from '../components/images/img2.jpg'
 
 //Importing js form validation
 import dateValidation from './form validation/formValidation';
@@ -27,7 +27,11 @@ const Appointment = () => {
     const type = React.createRef();
     const select = React.createRef();
 
-    //Creating useState hooks (ATM I have no idea how to make this prettier)
+    //useStates for error messages
+    const [errorMessage, seterrorMessage] = useState('');
+    const [errorMessageColor, seterrorMessageColor] = useState('#ff1a1a');
+
+    //Creating useState hooks for hour selection (ATM I have no idea how to make this prettier)
 
     const [available8, setAvailable8] = useState(true);
     const [available9, setAvailable9] = useState(true);
@@ -118,58 +122,106 @@ const Appointment = () => {
             hour: select.current.value,
             date: date.current.value
         }
-
+        console.log(data);
         //Verify if data is correct and if it is send request
         if(verification(data.date, data.hour, data.name, data.type, data.number)){
             const request = await axios.post('http://localhost/barbershop/appointment.php', qs.stringify(data));
 
             switch (request.status){
                 case 201:
-                    //TODO: do some nice stuff when req is made
-                    alert("everythign went well");
+                    seterrorMessageColor('#006600');
+                    seterrorMessage("everythign went well");
                     break;
                 case 418:
-                    alert("don't mess with me you little weiner");
+                    seterrorMessage("don't mess with me you little weiner");
                     break;
                 case 503:
-                    alert("Sorry we got problem with connection to our server, please try again later");
+                    seterrorMessage("Sorry we got problem with connection to our server, please try again later");
                     break;
                 default:
                     break;
             }
         }
-        else
-            //TODO: add something to show that data isn't correct
-            console.log("chuj");
+        else{
+            seterrorMessage('Something went wrong please check your inputs and try again');
+        }
 
     }
 
     return(
-        <div className={'container'}>
-            <h1>Make an appointment</h1>
-            <p><input type={'text'} placeholder={'Name'} className={'text-short-appointment'} required ref={name} />
-            <input type={'tel'} placeholder={'Your number'} className={'text-short-appointment'} required ref={number}/></p>
-            <select ref={type}>
-                <option value={'beard'}>Beard</option>
-                <option value={'hair'}>Hair</option>
-                <option value={'beard+hair'}>Beard + Hair</option>
-            </select>
-
-            <input type={'date'} className={'date'} placeholder={'Pick a date'} onChange={pickedDate} ref={date}/>
-
-            <select ref={select}>
-                <option value={'8:00'} disabled={!available8}>8:00</option>
-                <option value={'9:00'} disabled={!available9}>9:00</option>
-                <option value={'10:00'} disabled={!available10}>10:00</option>
-                <option value={'11:00'} disabled={!available11}>11:00</option>
-                <option value={'12:00'} disabled={!available12}>12:00</option>
-                <option value={'13:00'} disabled={!available13}>13:00</option>
-                <option value={'14:00'} disabled={!available14}>14:00</option>
-                <option value={'15:00'} disabled={!available15}>15:00</option>
-                <option value={'16:00'} disabled={!available16}>16:00</option>
-            </select>
-
-            <button className={'send-button'} onClick={makeAppointment}>Make Appointment</button>
+        <div>
+            <header className="masthead" style={{backgroundImage: `url(${img})`}}>
+                <div className="container position-relative px-4 px-lg-5">
+                    <div className="row gx-4 gx-lg-5 justify-content-center">
+                        <div className="col-md-10 col-lg-8 col-xl-7">
+                            <div className="page-heading">
+                                <h1>Make Appointment</h1>
+                                <span className="subheading">Let's meet.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main className="mb-4">
+                <div className="container px-4 px-lg-5">
+                    <div className="row gx-4 gx-lg-5 justify-content-center">
+                        <div className="col-md-10 col-lg-8 col-xl-7">
+                            <p>Want to get a haircut? Fill out the form below to make appointment</p>
+                            <div className="my-5">
+                                <div className="form-floating">
+                                    <input ref={name} className="form-control" type="text" placeholder="Enter your name..."/>
+                                    <label htmlFor="name">Full name</label>
+                                </div>
+                                <div className="form-floating">
+                                    <input ref={number} className="form-control" type="tel" placeholder="Enter your number..."/>
+                                    <label htmlFor="number">Phone number</label>
+                                </div>
+                                <div className="form-floating">
+                                    <input type={'date'} className={'date form-control'} placeholder={'Pick a date'} onChange={pickedDate} ref={date}/>
+                                </div>
+                                <div className="form-floating">
+                                    <select ref={select} className={"form-select form-control"} id={'hour-select'} style={{
+                                        border:0,
+                                        outline:0,
+                                        borderBottom: '1px solid #ced4da'
+                                    }}>
+                                        <option value={'8:00'} disabled={!available8}>8:00</option>
+                                        <option value={'9:00'} disabled={!available9}>9:00</option>
+                                        <option value={'10:00'} disabled={!available10}>10:00</option>
+                                        <option value={'11:00'} disabled={!available11}>11:00</option>
+                                        <option value={'12:00'} disabled={!available12}>12:00</option>
+                                        <option value={'13:00'} disabled={!available13}>13:00</option>
+                                        <option value={'14:00'} disabled={!available14}>14:00</option>
+                                        <option value={'15:00'} disabled={!available15}>15:00</option>
+                                        <option value={'16:00'} disabled={!available16}>16:00</option>
+                                    </select>
+                                    <label htmlFor={'hour-select'}>Select hour</label>
+                                </div>
+                                <div className="form-floating">
+                                    <select ref={type} className={"form-select form-control"} id={'type-select'} style={{
+                                        border:0,
+                                        outline:0,
+                                        borderBottom: '1px solid #ced4da'
+                                    }}>
+                                        <option value={'beard'} className={'form-control'}>Beard</option>
+                                        <option value={'hair'} className={'form-control'}>Hair</option>
+                                        <option value={'beard+hair'} className={'form-control'}>Beard + Hair</option>
+                                    </select>
+                                    <label htmlFor={'type-select'}>What do you want do cut?</label>
+                                </div>
+                                <br />
+                                <div style={{
+                                    color: errorMessageColor,
+                                    margin: '10px'
+                                }}>
+                                    {errorMessage}
+                                </div>
+                                <button className="btn btn-primary text-uppercase " type="submit" onClick={makeAppointment}>Make appointment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     )
 }

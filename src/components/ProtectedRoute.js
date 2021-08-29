@@ -1,27 +1,39 @@
-import React from 'react';
-import {Route, Redirect} from 'react-router-dom';
-import isAuth from "./isAuth";
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom';
+import axios from "axios";
+import qs from 'qs';
 
-const ProtectedRoute = ({component: Component, ...rest}) => {
+const ProtectedRoute = ({component: Component}) => {
 
+    let history = useHistory();
 
-    return (
-        <Route
-            {...rest}
-            render={(props) => {
+    const verifyAuth = async () => {
 
-                console.log(isAuth);
-                if(true){
-                    return <Component />;
+        //verify is the jwt token even exist
+
+        if(sessionStorage.getItem('jwt')!==null){
+            const request = await axios.post('http://localhost/barbershop/verifyauth.php',qs.stringify({jwt: sessionStorage.getItem('jwt')}))
+            //check the request status
+            if(request.status===200){
+                //check the request answer
+                if (request.data){
+                    ReactDOM.render(<Component />,document.getElementById('root'));
                 }
-                else{
-                    return (
-                        <Redirect to={{pathname: '/', state: {from: props.location}}}/>
-                    )
-                }
+                else
+                    history.push('/');
             }
-            }/>
-    );
+            else
+                history.push('/');
+        }
+        else
+            history.push('/');
+    }
+
+    useEffect(()=>{
+        verifyAuth();
+    })
+    return null
 }
 
 export default ProtectedRoute;

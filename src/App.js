@@ -5,16 +5,19 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.scss';
 import './AppMobile.scss';
 
-//import components
-import Logo from "./components/Logo";
+//import bootstrap
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+
+//import public components
 import Nav from "./components/Nav";
 import LandingPage from "./components/LandingPage";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 import Appointment from "./components/Appoinment";
-import Login from "./components/admin/Login";
+import Footer from "./components/Footer";
 
 //Importing protected route and components
+import Login from "./components/admin/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Admin from "./components/admin/Admin";
 
@@ -27,24 +30,24 @@ function App() {
 
             <Switch>
                 <Route path={'/'} exact>
-                    <Logo/>
                     <Nav/>
                     <LandingPage/>
+                    <Footer/>
                 </Route>
                 <Route path={'/about'} exact>
-                    <Logo/>
                     <Nav/>
                     <AboutUs/>
+                    <Footer/>
                 </Route>
                 <Route path={'/contact'} exact>
-                    <Logo/>
                     <Nav/>
                     <Contact/>
+                    <Footer/>
                 </Route>
                 <Route path={'/appointment'} exact>
-                    <Logo/>
                     <Nav/>
                     <Appointment/>
+                    <Footer/>
                 </Route>
 
                 {/* Admin panel route */}
@@ -55,7 +58,9 @@ function App() {
 
                 {/* Protected routes only for logged users*/}
 
-                <ProtectedRoute path={'/admin'} component={Admin}/>
+                <Route path={'/admin'} exact>
+                    <ProtectedRoute component={Admin}/>
+                </Route>
 
 
 
