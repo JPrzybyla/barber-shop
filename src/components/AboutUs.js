@@ -5,9 +5,6 @@ import React from 'react';
 import '../App.scss';
 import img from '../components/images/img2.jpg'
 
-
-//TODO: add load animations
-
 const AboutUs = () => {
     return(
         <div>

@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 //import css
 import './App.scss';
-import './AppMobile.scss';
 
 //import bootstrap
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -15,6 +14,7 @@ import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 import Appointment from "./components/Appoinment";
 import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 //Importing protected route and components
 import Login from "./components/admin/Login";
@@ -50,6 +50,10 @@ function App() {
                     <Footer/>
                 </Route>
 
+                {/* 404 route */}
+
+                <Route component={NotFound}/>
+
                 {/* Admin panel route */}
 
                 <Route path={'/login'} exact>
@@ -61,7 +65,6 @@ function App() {
                 <Route path={'/admin'} exact>
                     <ProtectedRoute component={Admin}/>
                 </Route>
-
 
 
             </Switch>

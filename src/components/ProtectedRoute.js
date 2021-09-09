@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import axios from "axios";
 import qs from 'qs';
 

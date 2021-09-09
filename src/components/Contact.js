@@ -11,8 +11,6 @@ import img from '../components/images/img2.jpg'
 import emailValidation from './form validation/formValidation';
 
 
-//TODO: do something with how it looks
-
 const Contact = () => {
 
     const name = React.createRef();

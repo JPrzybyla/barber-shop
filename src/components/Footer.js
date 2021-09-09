@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import '../App.scss';
 
 
-//TODO: add load animations
-
 const Footer = () => {
     return(
         <footer className="border-top">
